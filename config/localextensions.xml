@@ -49,5 +49,8 @@
     <extension name='customerinterestsaddon' />
     <extension name='stocknotificationaddon' />
     <extension name='chineseproductsharingaddon' />
+    <!--Add customer extension by zhoubin,at 2018/01/24 17:28:32 start-->
+    <extension name="memberapi"/>
+    <!--Add customer extension by zhoubin,at 2018/01/24 17:28:32 end-->
   </extensions>
 </hybrisconfig>
