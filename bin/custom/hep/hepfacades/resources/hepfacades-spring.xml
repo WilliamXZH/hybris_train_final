@@ -190,4 +190,6 @@
 	</bean>
 
 	<bean id="genderData" class="com.hep.facades.product.data.GenderData" scope="prototype"/>
+
+
 </beans>
