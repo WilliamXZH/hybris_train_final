@@ -49,5 +49,7 @@
     <extension name='customerinterestsaddon' />
     <extension name='stocknotificationaddon' />
     <extension name='chineseproductsharingaddon' />
+
+    <extension name="hepwebservice"/>
   </extensions>
 </hybrisconfig>

@@ -19,4 +19,23 @@
 		<property name="code" type="String"/>
 		<property name="name" type="String"/>
 	</bean>
+
+	<!--add  by yl at 2018/1/25 11:00s-->
+	<bean class="com.hep.hand.beans.Msg">
+		<property name="status" type="Integer"/>
+		<property name="message" type="String"/>
+		<property name="data" type="java.util.Map&lt;String,Object>" >
+			<description>this map is used to send data and msg</description>
+		</property>
+	</bean>
+
+	<!--add by yl at 2018/1/25 19:28-->
+	<bean class="com.hep.facades.review.data.HepCustomerReviewData">
+		<property name="code" type="String"/>
+		<property name="rating" type="String"/>
+		<property name="orderEntry" type="String"/>
+		<property name="content" type="String"/>
+		<property name="customer" type="String"/>
+		<property name="product" type="String"/>
+	</bean>
 </beans>
