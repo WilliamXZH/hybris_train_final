@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
  [y] hybris Platform
 
@@ -35,10 +35,66 @@
         </enumtype>
     </enumtypes>
 
+        <!-- Add your item definitions here -->
+    <!--Order by YL -->
+    <relations>
+        <relation generate="true" localized="false" code="HepReviewToCustomerRel" autocreate="true">
+            <sourceElement type="Customer" qualifier="customer" cardinality="one">
+                <modifiers read="true" write="true" search="true"  optional="false"/>
+            </sourceElement>
+            <targetElement type="HepCustomerReview" qualifier="hepCustomerReviews" cardinality="many">
+                <modifiers read="true" write="true" search="true"  optional="true"/>
+            </targetElement>
+        </relation>
+        <relation generate="true" localized="false" code="HepReviewToProductRel" autocreate="true">
+            <sourceElement type="Product" qualifier="product" cardinality="one">
+                <modifiers read="true" write="true" search="true"  optional="false" />
+            </sourceElement>
+            <targetElement type="HepCustomerReview" qualifier="hepCustomerReviews" cardinality="many">
+                <modifiers read="true" write="true" search="true"  optional="true" />
+            </targetElement>
+        </relation>
+    </relations>
+
     <itemtypes>
 
-        <!-- Add your item definitions here -->
-
+        <!-- Order by YL -->
+        <itemtype code="HepCustomerReview" generate="true" autocreate="true">
+            <description>会员评论</description>
+            <deployment table="hepCommentReview" typecode="19002"/>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <description>评论编码</description>
+                    <persistence type="property"/>
+                    <modifiers unique="true" search="true" write="true"/>
+                </attribute>
+                <attribute qualifier="rating" type="java.lang.Double">
+                    <description>会员对商品的评分，最高5分</description>
+                    <persistence type="property"/>
+                    <modifiers unique="false" search="true" write="true" optional="true"/>
+                </attribute>
+                <!-- <attribute qualifier="customer" type="Customer">
+                     <description>??</description>
+                     <persistence type="property"/>
+                     <modifiers search="true" write="true" optional="false"/>
+                 </attribute>
+                 <attribute qualifier="product" type="Product">
+                     <description>??</description>
+                     <persistence type="property"/>
+                     <modifiers search="true" write="true" optional="false"/>
+                 </attribute>-->
+                <attribute qualifier="orderEntry" type="OrderEntry">
+                    <description>订单行</description>
+                    <persistence type="property"/>
+                    <modifiers search="true" write="true" optional="true"/>
+                </attribute>
+                <attribute qualifier="content" type="java.lang.String">
+                    <description>评论内容</description>
+                    <persistence type="property"/>
+                    <modifiers search="true" write="true" optional="true"/>
+                </attribute>
+            </attributes>
+        </itemtype>
 
         <!-- TypeGroups are for structure of this file only -->
 
