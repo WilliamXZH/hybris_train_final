@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -61,28 +58,6 @@ public class HepSyncController {
         return msg;
     }
 
-    @RequestMapping(value = "/customer1",method = RequestMethod.POST)
-    @ResponseBody
-    public Msg syncCustomerData1(final HttpServletRequest request){
-        msg = new Msg();
-        msg.setStatus(1);
-        msg.setMessage("success!");
-        msg.setData(null);
-
-        try {
-            BufferedReader bufferedReader = request.getReader();
-            String str,wholeStr = "";
-            while((str = bufferedReader.readLine()) != null){
-                wholeStr += str;
-            }
-            System.out.println(wholeStr);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return msg;
-    }
-
-
     @RequestMapping(value = "/hepcustomerReview",method = RequestMethod.POST)
     @ResponseBody
     public Msg syncHepCustomerReviewData(@RequestBody final List<HepCustomerReviewData> hepCustomerReviewDataList) {
@@ -97,6 +72,5 @@ public class HepSyncController {
         }
         return msg;
     }
-
 
 }
