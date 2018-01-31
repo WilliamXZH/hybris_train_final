@@ -66,4 +66,20 @@
 
 	-->
 
+	<!--Add translate data by zhoubin,at 2018/01/24 17:26:16 start-->
+	<bean class="com.hep.facades.product.dto.memberapi.OrderDTO">
+		<property name="code" type="String"/>
+		<property name="date" type="String"/>
+		<property name="iscode" type="String"/>
+		<property name="uid" type="String"/>
+	</bean>
+	<bean class="com.hep.facades.product.dto.memberapi.ProductDTO">
+		<property name="code" type="String"/>
+		<property name="approvalStatus" type="String"/>
+		<property name="version" type="String"/>
+		<property name="catalog" type="String"/>
+
+	</bean>
+	<!--Add translate data by zhoubin,at 2018/01/24 17:26:16 end-->
+
 </beans>
