@@ -39,7 +39,8 @@ public class PropertiesUtils {
 
     public static boolean store(Properties properties, String path) {
         try {
-            FileOutputStream fos = new FileOutputStream(path);
+            final String propertiesPath = PropertiesUtils.class.getClassLoader().getResource(path).getPath();
+            FileOutputStream fos = new FileOutputStream(propertiesPath);
             properties.store(fos, "写入配置文件!");
             fos.close();
             return true;

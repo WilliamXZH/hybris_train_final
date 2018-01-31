@@ -14,16 +14,13 @@ import java.text.SimpleDateFormat;
  * @Email bin.zhou02@hand-china.com
  * @Date 2018/01/24 19:51
  */
-public class OrderPopulator implements Populator<OrderModel,OrderDTO> {
+public class OrderPopulator implements Populator<OrderModel, OrderDTO> {
     @Override
     public void populate(OrderModel orderModel, OrderDTO orderDTO) throws ConversionException {
         orderDTO.setCode(orderModel.getCode());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         orderDTO.setDate(sdf.format(orderModel.getDate()));
-        orderDTO.setDiscountsIncludeDeliveryCost(orderModel.isDiscountsIncludeDeliveryCost());
-        orderDTO.setDiscountsIncludePaymentCost(orderModel.isDiscountsIncludePaymentCost());
         orderDTO.setIscode(orderModel.getCurrency().getIsocode());
         orderDTO.setUid(orderModel.getUser().getUid());
-        orderDTO.setNet(orderModel.getNet());
     }
 }

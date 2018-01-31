@@ -5,6 +5,7 @@ import com.hep.facades.product.dto.memberapi.OrderDTO;
 import com.hep.memberapi.common.HttpUtils;
 import com.hep.memberapi.common.MemberApiResultEntity;
 import com.hep.memberapi.common.PropertiesUtils;
+import com.hep.memberapi.common.RequestEntity;
 import com.hep.memberapi.facade.MemberApiOrderFacade;
 import com.hep.memberapi.manager.OrderManager;
 import org.apache.commons.logging.Log;
@@ -66,9 +67,14 @@ public class OrderManagerImpl implements OrderManager {
 
         Collection<OrderDTO> orderDTOS = orderFacade.searchBetweenDate(lastDate, nowDate);
         Gson gson = new Gson();
+        RequestEntity requestEntity = new RequestEntity();
+        requestEntity.setLasttime(new SimpleDateFormat(RequestEntity.TIME_FORMAT_PATTERN).format(nowDate));
+        requestEntity.setKey("123");
+        requestEntity.setSize(orderDTOS.size() + "");
+        requestEntity.setData(gson.toJson(orderDTOS).replace("\"","'"));
 
         try {
-            String resultString = HttpUtils.doPost(gson.toJson(orderDTOS), url);
+            String resultString = HttpUtils.doPost(gson.toJson(requestEntity), url);
             MemberApiResultEntity resultEntity = gson.fromJson(resultString, MemberApiResultEntity.class);
             if (resultEntity.isSuccess()) {
                 LOGGER.info("Push the order to the Member System successful.Return message:" + resultEntity.getMessage());
@@ -79,8 +85,8 @@ public class OrderManagerImpl implements OrderManager {
                 throw new Exception(resultEntity.getMessage());
             }
         } catch (Exception e) {
-            e.printStackTrace();
             LOGGER.error("Push the order to the Member System failed.Return message:" + e.getMessage());
+            e.printStackTrace();
         }
 
     }

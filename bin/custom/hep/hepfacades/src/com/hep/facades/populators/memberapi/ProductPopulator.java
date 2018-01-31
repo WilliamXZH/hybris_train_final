@@ -14,11 +14,13 @@ import org.springframework.stereotype.Component;
  * @Email bin.zhou02@hand-china.com
  * @Date 2018/01/24 19:53
  */
-public class ProductPopulator implements Populator<ProductModel,ProductDTO> {
+public class ProductPopulator implements Populator<ProductModel, ProductDTO> {
     @Override
     public void populate(ProductModel productModel, ProductDTO productDTO) throws ConversionException {
-        productDTO.setCode(productModel.getCode());
         productDTO.setApprovalStatus(productModel.getApprovalStatus().getCode());
-        productDTO.setCatalogVersion(productModel.getCatalogVersion().getVersion());
+        productDTO.setCode(productModel.getCode());
+        productDTO.setCatalog(productModel.getCatalogVersion().getCatalog().getPk().toString());
+        productDTO.setVersion(productModel.getCatalogVersion().getVersion());
     }
+
 }

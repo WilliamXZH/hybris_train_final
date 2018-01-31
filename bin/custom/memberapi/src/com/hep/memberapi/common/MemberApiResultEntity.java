@@ -10,8 +10,8 @@ import java.util.Map;
  * @Date 2018/01/25 14:12
  */
 public class MemberApiResultEntity {
-    public static final Integer STATUS_FAILED = 0;
-    public static final Integer STATUS_SUCCESS = 1;
+    public static final Integer STATUS_FAILED = 1;
+    public static final Integer STATUS_SUCCESS = 0;
     private Integer status;
     private String message;
 

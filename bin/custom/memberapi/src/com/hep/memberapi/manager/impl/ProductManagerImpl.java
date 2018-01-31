@@ -5,6 +5,7 @@ import com.hep.facades.product.dto.memberapi.ProductDTO;
 import com.hep.memberapi.common.HttpUtils;
 import com.hep.memberapi.common.MemberApiResultEntity;
 import com.hep.memberapi.common.PropertiesUtils;
+import com.hep.memberapi.common.RequestEntity;
 import com.hep.memberapi.facade.MemberApiProductFacade;
 import com.hep.memberapi.manager.ProductManager;
 import de.hybris.platform.commercefacades.order.data.OrderData;
@@ -70,23 +71,15 @@ public class ProductManagerImpl implements ProductManager {
         }
 
         Collection<ProductDTO> productDTOS = productFacade.searchBetweenDate(lastDate, nowDate);
-        OrderData orderData = new OrderData();
 
         Gson gson = new Gson();
-        File file = new File("D://order.json");
+        RequestEntity request = new RequestEntity();
+        request.setLasttime(new SimpleDateFormat(RequestEntity.TIME_FORMAT_PATTERN).format(nowDate));
+        request.setKey("123");
+        request.setSize(productDTOS.size() + "");
+        request.setData(gson.toJson(productDTOS).replace("\"","'"));
         try {
-            file.createNewFile();
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            fileOutputStream.write(gson.toJson(orderData).getBytes());
-            fileOutputStream.flush();
-            fileOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        gson.toJson(orderData);
-        try {
-            String resultString = HttpUtils.doPost(gson.toJson(productDTOS), url);
+            String resultString = HttpUtils.doPost(gson.toJson(request), url);
             MemberApiResultEntity result = gson.fromJson(resultString, MemberApiResultEntity.class);
             if(result.isSuccess()){
                 LOGGER.info("Push the product to the Member System successful.Return message:" + result.getMessage());
