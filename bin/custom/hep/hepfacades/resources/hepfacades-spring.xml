@@ -18,7 +18,8 @@
 		http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 		
-	<context:annotation-config/> 
+	<context:annotation-config/>
+	<context:component-scan base-package="com.hep.facades"/>
 
 	<alias alias="simpleSuggestionFacade" name="defaultSimpleSuggestionFacade"/>
 	<bean id="defaultSimpleSuggestionFacade" class="com.hep.facades.suggestion.impl.DefaultSimpleSuggestionFacade" >
@@ -127,6 +128,20 @@
 			</list>
 		</property>
 	</bean>
+
+
+	<!--add by yl at 2018/1/26 10:45-->
+	<bean id="hepCustomerReviewConvert" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.hep.facades.review.data.HepCustomerReviewData"/>
+		<property name="populators">
+			<list>
+				<ref bean="hepCustomerReviewPopular"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="hepCustomerReviewPopular" class="com.hep.facades.populators.HepCustomerReviewPopulator">
+	</bean>
+
 
 	<bean id="customerEmailContext" class="com.hep.facades.process.email.context.CustomerEmailContext" parent="abstractEmailContext" scope="prototype" >
 		<property name="customerConverter" ref="customerConverter"/>
