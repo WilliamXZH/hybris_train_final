@@ -72,6 +72,10 @@ public class ProductManagerImpl implements ProductManager {
 
         Collection<ProductDTO> productDTOS = productFacade.searchBetweenDate(lastDate, nowDate);
 
+        if (productDTOS.size()==0){
+            LOGGER.info("No new product will be synchronized.");
+            return;
+        }
         Gson gson = new Gson();
         RequestEntity request = new RequestEntity();
         request.setLasttime(new SimpleDateFormat(RequestEntity.TIME_FORMAT_PATTERN).format(nowDate));

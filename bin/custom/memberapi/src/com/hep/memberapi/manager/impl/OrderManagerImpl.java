@@ -66,6 +66,10 @@ public class OrderManagerImpl implements OrderManager {
         }
 
         Collection<OrderDTO> orderDTOS = orderFacade.searchBetweenDate(lastDate, nowDate);
+        if (orderDTOS.size()==0){
+            LOGGER.info("No new order will be synchronized.");
+            return;
+        }
         Gson gson = new Gson();
         RequestEntity requestEntity = new RequestEntity();
         requestEntity.setLasttime(new SimpleDateFormat(RequestEntity.TIME_FORMAT_PATTERN).format(nowDate));
