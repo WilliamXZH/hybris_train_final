@@ -5,7 +5,6 @@ import com.hep.facades.service.HepCustomerReviewService;
 import de.hybris.platform.core.model.order.OrderEntryModel;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.core.model.user.CustomerModel;
-import de.hybris.platform.customerreview.model.CustomerReviewModel;
 import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
 import de.hybris.platform.servicelayer.search.FlexibleSearchService;
 import org.slf4j.Logger;

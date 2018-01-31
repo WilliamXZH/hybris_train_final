@@ -132,7 +132,7 @@
 
 	<!--add by yl at 2018/1/26 10:45-->
 	<bean id="hepCustomerReviewConvert" parent="abstractPopulatingConverter">
-		<property name="targetClass" value="com.hep.facades.review.data.HepCustomerReviewData"/>
+		<property name="targetClass" value="com.hep.core.model.HepCustomerReviewModel"/>
 		<property name="populators">
 			<list>
 				<ref bean="hepCustomerReviewPopular"/>
