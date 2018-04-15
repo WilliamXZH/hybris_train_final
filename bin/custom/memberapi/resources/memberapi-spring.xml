@@ -110,16 +110,6 @@
             </list>
         </property>
     </bean>
-
-    <bean id="hepOrderData2CustomSystemCronJobPerformable"
-          class="com.hep.memberapi.job.HepOrderData2CustomSystemCronJobPerformable"
-          autowire="byName">
-
-    </bean>
-    <bean id="hepProductData2CustomSystemCronJobPerformable"
-          class="com.hep.memberapi.job.HepProductData2CustomSystemCronJobPerformable"
-          autowire="byName" />
-
     <context:component-scan base-package="com.hep.memberapi"/>
     <!--Add Product and Order convert by zhoubin,at 2018/01/24 17:28:32 end-->
 </beans>
